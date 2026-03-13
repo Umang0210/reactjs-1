@@ -3,14 +3,22 @@ import axios from "axios";
 function Content() {
   const [products, setProducts] = useState([]);
   const API_URL = import.meta.env.VITE_API_URL;
-  const fetchProducts = async () => {
-    const url = `${API_URL}/store`;
-    const res = await axios.get(url);
-    setProducts(res.data);
-  };
+
   useEffect(() => {
+    let isMounted = true;
+
+    const fetchProducts = async () => {
+      const url = `${API_URL}/store`;
+      const res = await axios.get(url);
+      if (isMounted) setProducts(res.data);
+    };
+
     fetchProducts();
-  }, []);
+
+    return () => {
+      isMounted = false;
+    };
+  }, [API_URL]);
 
   return (
     <div>
