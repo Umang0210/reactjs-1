@@ -56,7 +56,7 @@ src/
 - npm run preview: Serves the production build locally
 - npm run lint: Runs ESLint checks
 
-## CI/CD Pipeline
+## CI Pipeline
 
 This project includes a GitHub Actions workflow at:
 
@@ -64,22 +64,10 @@ This project includes a GitHub Actions workflow at:
 
 Pipeline behavior:
 
-- CI on every push and pull request:
-	- Installs dependencies using npm ci
-	- Runs lint
-	- Runs production build
-- CD on push to main:
-	- Deploys built app to GitHub Pages
-
-## GitHub Pages Deployment Notes
-
-1. In GitHub repository settings, enable Pages and set Source to GitHub Actions.
-2. Ensure your default branch is main.
-3. If deploying to a project page, set the Vite base path in vite.config.js.
-
-Example for a repository named reactjs-1-main:
-
-base: '/reactjs-1-main/'
+- Runs on every push and pull request to main
+- Installs dependencies using npm ci
+- Runs lint
+- Runs production build
 
 ## Future Improvements
 
